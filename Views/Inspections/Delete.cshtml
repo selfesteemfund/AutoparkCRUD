@@ -1,0 +1,39 @@
+﻿@model autopark.Models.Inspection
+
+@{
+    ViewData["Title"] = "Удаление записи о техосмотре";
+}
+
+<h1></h1>
+
+<h3>Вы уверены что хотите удалить данный техосмотр?</h3>
+<div>
+    <h4>Inspection</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.InspNote)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.InspNote)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.InspDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.InspDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Car)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Car.CarNumber)
+        </dd class>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Удалить" class="btn btn-danger" /> |
+        <a asp-action="Index">Вернуться к списку</a>
+    </form>
+</div>
