@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<autopark.Models.Car>
-
 @{
     ViewData["Title"] = "Список автомобилей";
 }
 
-    <h1>Список автомобилей</h1>
+<h1>Список автомобилей</h1>
 
 <p>
     <a asp-action="Create">Добавить</a> | <a asp-action="Report">Отчёт</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
@@ -28,26 +28,26 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReleaseDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CarNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RegDate)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Подробности</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
-            </td>
-        </tr>
-    }
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReleaseDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CarNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegDate)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Подробности</a> |
+                    <a id="IndexDelete" asp-action="IndexDelete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

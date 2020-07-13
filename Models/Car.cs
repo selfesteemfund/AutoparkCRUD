@@ -20,7 +20,7 @@ namespace autopark.Models
         public string Model { get; set; }
 
         [Required(ErrorMessage = "Обязательное поле")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = @"{0:yyyy\/dd\/MM}", ApplyFormatInEditMode = true)]
         [Display(Name = "Дата выпуска")]
         public DateTime ReleaseDate { get; set; }
         [Required(ErrorMessage = "Обязательное поле")]
@@ -30,14 +30,16 @@ namespace autopark.Models
         public string CarNumber { get; set; }
         [Required(ErrorMessage = "Обязательное поле")]
         [Display(Name = "Дата постановки на учёт")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = @"{0:yyyy\/dd\/MM}", ApplyFormatInEditMode = true)]
         public DateTime RegDate { get; set; }
 
-        /*- 
-        [Required(ErrorMessage = "Обязательное поле")]
-        [Display(Name = "Фотография автомобиля")]
-        public string CarPicture { get; set; } 
-         -*/
+        public string InspCarId
+        {
+            get
+            {
+                return Id + " - " + CarNumber;
+            }
+        }
 
         public ICollection<Inspection> Inspections { get; set; }
     }

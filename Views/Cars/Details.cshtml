@@ -8,6 +8,9 @@
 
 <div>
     <h4>об автомобиле</h4>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a> | 
+    <a asp-action="Create" asp-route-id="@Model.Id" asp-controller="Inspections">Добавить техосмотр</a>
+
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -35,8 +38,64 @@
             @Html.DisplayFor(model => model.RegDate)
         </dd>
     </dl>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Номер ТО
+                </th>
+                <th>
+                    ГРЗ автомобиля
+                </th>
+                <th>
+                    Замечания
+                </th>
+                <th>
+                    Дата
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Inspections.Count > 0)
+            {
+                foreach (var item in Model.Inspections)
+                {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Car.CarNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InspNote)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InspDate)
+                </td>
+                <td>
+                    <a asp-controller="Inspections" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                    <a asp-controller="Inspections" asp-action="Details" asp-route-id="@item.Id">Подробности</a> |
+                    <a asp-controller="Inspections" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+                }
+            }
+            else
+            {
+            <tr>
+            <td colspan="5">
+                Записи о техосмотрах отсутствуют<br />
+                <a asp-action="Create" asp-route-id="@Model.Id" asp-controller="Inspections">Добавить техосмотр</a>
+            </td>
+            </tr>
+            }
+        <tbody>
+    </table>
 </div>
+
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a> |
-    <a asp-action="Index">Вернуться к списку</a>
+     <a asp-action="Index">Вернуться к списку</a>
 </div>

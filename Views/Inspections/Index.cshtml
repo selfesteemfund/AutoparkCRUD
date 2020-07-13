@@ -12,8 +12,9 @@
 <table class="table">
     <thead>
         <tr>
+
             <th>
-                @Html.DisplayNameFor(model => model.CarId)
+                @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
                 ГРЗ автомобиля
@@ -30,8 +31,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+
             <td>
-                @Html.DisplayFor(modelItem => item.CarId)
+                @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Car.CarNumber)

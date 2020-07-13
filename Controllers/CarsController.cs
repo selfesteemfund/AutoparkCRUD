@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using autopark.Data;
 using autopark.Models;
-using Microsoft.AspNetCore.Http;
-using System.IO;
+
 
 namespace autopark.Controllers
 {
@@ -21,12 +18,12 @@ namespace autopark.Controllers
             _context = context;
         }
 
-        // GET: Cars
         public async Task<IActionResult> Index()
         {
             return View(await _context.Cars.ToListAsync());
         }
 
+        // GET: Cars
         // GET: Cars/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -36,7 +33,9 @@ namespace autopark.Controllers
             }
 
             var car = await _context.Cars
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .Include(n => n.Inspections)
+                .FirstOrDefaultAsync(c => c.Id == id);
+
             if (car == null)
             {
                 return NotFound();
@@ -47,17 +46,13 @@ namespace autopark.Controllers
         public IActionResult Report()
         {
             var total = _context.Cars.Count();
-            ViewBag.total = total;
+            var LessThanThree = _context.Cars.Count(c => c.ReleaseDate > DateTime.Now.AddYears(-3));
+            var OlderThanThree = total - LessThanThree;
 
-            var OlderThanThree = _context.Cars.Count(
-                c => EF.Functions.DateDiffDay(c.ReleaseDate, DateTime.Now) / 365.25 > 3
-                );
+            ViewBag.total = total;
+            ViewBag.LessThanThree = LessThanThree;
             ViewBag.OlderThanThree = OlderThanThree;
 
-            var LessThanThree = _context.Cars.Count(
-                c => EF.Functions.DateDiffDay(c.ReleaseDate, DateTime.Now) / 365.25 < 3
-            );
-            ViewBag.LessThanThree = LessThanThree;
             return View();
         }
 
@@ -98,7 +93,7 @@ namespace autopark.Controllers
             }
             return View(car);
         }
-
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Model,ReleaseDate,CarNumber,RegDate,CarPicture")] Car car)
@@ -163,6 +158,14 @@ namespace autopark.Controllers
         private bool CarExists(int id)
         {
             return _context.Cars.Any(e => e.Id == id);
+        }
+
+        public async Task<IActionResult> IndexDelete(int? id)
+        {
+            var car = await _context.Cars.FindAsync(id);
+            _context.Cars.Remove(car);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

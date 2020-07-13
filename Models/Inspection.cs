@@ -10,6 +10,7 @@ namespace autopark.Models
     [DisplayName("Техосмотры")]
     public class Inspection
     {
+        [DisplayName("Номер техосмотра")]
         public int Id { get; set; }
         [Required(ErrorMessage = "Обязательное поле")]
         [Display(Name = "Номер автомобиля")]
@@ -21,8 +22,10 @@ namespace autopark.Models
         public string InspNote { get; set; }
         [Required(ErrorMessage = "Обязательное поле")]
         [Display(Name = "Дата техосмотра")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = @"{0:yyyy\/dd\/MM}", ApplyFormatInEditMode = true)]
         public DateTime InspDate { get; set; }
         public Car Car { get; set; }
+        
+
     }
 }

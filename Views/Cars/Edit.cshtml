@@ -4,11 +4,13 @@
     ViewData["Title"] = "Редактирование";
 }
 
-<h1>Редактирование записи об</h1>
+<h1>Редактирование</h1>
 
-<h4>автомобиле</h4>
+<h4> записи об автомобиле</h4>
 <hr />
+
 <div class="row">
+
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -20,7 +22,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="ReleaseDate" class="control-label"></label>
-                <input asp-for="ReleaseDate" class="form-control" />
+                <input asp-for="ReleaseDate" type="date" class="datepicker form-control" min="01-01-1995" max="12-31-2020" value="2012-10-01"/>
+
                 <span asp-validation-for="ReleaseDate" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -30,7 +33,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="RegDate" class="control-label"></label>
-                <input asp-for="RegDate" class="form-control" />
+                <input asp-for="RegDate" type="date" class="datepicker form-control" min="01-01-1995" max="12-31-2020" value="2012-10-01" />
                 <span asp-validation-for="RegDate" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -40,9 +43,13 @@
     </div>
 </div>
 
+
 <div>
-    <a asp-action="Index">Вернуться к списку</a>
+    <a asp-action="Details" asp-route-id="@Model.Id">Перейти к подробностям</a> |
+    <a asp-action="Index">Перейти к списку автомобилей</a>
+
 </div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

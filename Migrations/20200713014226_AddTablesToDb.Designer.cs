@@ -10,7 +10,7 @@ using autopark.Data;
 namespace autopark.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200624212909_AddTablesToDb")]
+    [Migration("20200713014226_AddTablesToDb")]
     partial class AddTablesToDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

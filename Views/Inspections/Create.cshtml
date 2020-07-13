@@ -14,7 +14,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="CarId" class="control-label"></label>
-                <select asp-for="CarId" class ="form-control" asp-items="ViewBag.CarId"></select>
+                <select asp-for="CarId" class ="form-control" asp-items="ViewBag.InspCarId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="InspNote" class="control-label"></label>
@@ -23,7 +23,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="InspDate" class="control-label"></label>
-                <input asp-for="InspDate" class="form-control" />
+                <input asp-for="InspDate" type="date" class="datepicker form-control"  min="01-01-1995" max="12-31-2020" value="" />
                 <span asp-validation-for="InspDate" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -34,7 +34,10 @@
 </div>
 
 <div>
-    <a asp-action="Index">Вернуться к списку</a>
+    <div>
+        <a asp-controller="Cars" asp-action="Index">Перейти к списку автомобилей</a> |
+        <a asp-controller="Inspections" asp-action="Index">Перейти к списку техосмотров</a>
+    </div>
 </div>
 
 @section Scripts {

@@ -43,9 +43,23 @@
             &copy; 2020 - Автопарк - <a asp-area="" asp-controller="Home" asp-action="Privacy">Конфиденциальность</a>
         </div>
     </footer>
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.css" rel="stylesheet">
+    <script type="text/javascript">
+        $(function () {
+            $('.datepicker').datepicker();
+        });
+    </script>
+
+
+    @RenderSection("scripts", required: false)
 </body>
 </html>

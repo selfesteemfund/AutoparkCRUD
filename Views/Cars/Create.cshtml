@@ -19,7 +19,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="ReleaseDate" class="control-label"></label>
-                <input asp-for="ReleaseDate" type="date" min="1995-01-01" max="2020-12-31" value="2012-12-12" class="form-control" />
+                <input asp-for="ReleaseDate" type="date" class="datepicker form-control" min="01-01-1995" max="12-31-2020" value="" />
                 <span asp-validation-for="ReleaseDate" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -29,12 +29,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="RegDate" class="control-label"></label>
-                <input asp-for="RegDate" type="date" min="1995-01-01" max="2020-12-31" value="2012-12-12" class="form-control" />
+                <input asp-for="RegDate" type="date" class="datepicker form-control" min="01-01-1995" max="12-31-2020" value=""/>
                 <span asp-validation-for="RegDate" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Добавить" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -47,3 +47,4 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+

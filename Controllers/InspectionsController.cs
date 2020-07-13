@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -22,7 +20,7 @@ namespace autopark.Controllers
         // GET: Inspections
         public async Task<IActionResult> Index()
         {
-            var appDbContext = _context.Inspections.Include(i => i.Car);
+            var appDbContext = _context.Inspections.Include(c => c.Car);
             return View(await appDbContext.ToListAsync());
         }
 
@@ -35,7 +33,7 @@ namespace autopark.Controllers
             }
 
             var inspection = await _context.Inspections
-                .Include(i => i.Car)
+                .Include(c => c.Car)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (inspection == null)
             {
@@ -48,7 +46,7 @@ namespace autopark.Controllers
         // GET: Inspections/Create
         public IActionResult Create()
         {
-            ViewData["CarId"] = new SelectList(_context.Cars, "Id", "CarNumber");
+            ViewBag.InspCarId = new SelectList(_context.Cars, "Id", "InspCarId");
             return View();
         }
 
