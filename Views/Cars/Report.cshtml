@@ -9,18 +9,21 @@
 <div>
     <h4>об автомобилях</h4>
 
-    <table class="table">
+    <table class="table w-auto">
         <tr>
             <td>Всего автомобилей: </td>
-            <td> @ViewBag.total</td>
+            <td class="text-left"> @ViewBag.total</td>
+            <td></td>
         </tr>
         <tr>
-            <td>Автомобили, выпущенные до трёх лет назад: </td>
-            <td>@ViewBag.LessThanThree</td>
+            <td>Автомобили, выпущенные до трёх лет назад:</td>
+            <td class="text-left">@ViewBag.LessThanThree</td>
+            <td></td>
         </tr>
-        <tr>
-            <td>Автомобили, выпущенные более трёх лет назад::</td>
-            <td>@ViewBag.OlderThanThree</td>
+        <tr>    
+            <td>Автомобили, выпущенные более трёх лет назад:</td>
+            <td class="text-left">@ViewBag.OlderThanThree</td>
+            <td></td>
         </tr>
     </table>
     <div>

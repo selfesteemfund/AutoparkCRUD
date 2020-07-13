@@ -18,10 +18,19 @@ namespace autopark.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
+            var cars = from с in _context.Cars
+                         select с;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                cars = cars.Where(s => s.CarNumber.Contains(searchString));
+            }
+
             return View(await _context.Cars.ToListAsync());
         }
+
 
         // GET: Cars
         // GET: Cars/Details/5

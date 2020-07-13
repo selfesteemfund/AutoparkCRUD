@@ -9,7 +9,7 @@
 <div>
     <h4>об автомобиле</h4>
     <a asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a> | 
-    <a asp-action="Create" asp-route-id="@Model.Id" asp-controller="Inspections">Добавить техосмотр</a>
+    <a asp-action="Create" asp-controller="Inspections">Добавить техосмотр</a>
 
     <hr />
     <dl class="row">
@@ -88,7 +88,7 @@
             <tr>
             <td colspan="5">
                 Записи о техосмотрах отсутствуют<br />
-                <a asp-action="Create" asp-route-id="@Model.Id" asp-controller="Inspections">Добавить техосмотр</a>
+                <a asp-action="Create" asp-controller="Inspections">Добавить техосмотр</a>
             </td>
             </tr>
             }

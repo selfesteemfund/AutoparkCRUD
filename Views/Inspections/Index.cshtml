@@ -9,8 +9,8 @@
 <p>
     <a asp-action="Create">Добавить техосмотр</a>
 </p>
-<table class="table">
-    <thead>
+<table class="table table-hover">
+    <thead >
         <tr>
 
             <th>
@@ -29,27 +29,28 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
+        @foreach (var item in Model)
+        {
+            <tr>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Car.CarNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InspNote)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InspDate)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Подробности</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
-            </td>
-        </tr>
-}
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Car.CarNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InspNote)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InspDate)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Подробности</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
