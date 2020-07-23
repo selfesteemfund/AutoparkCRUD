@@ -14,12 +14,14 @@ namespace autopark.Models
         public int Id { get; set; }
         [Required(ErrorMessage = "Обязательное поле.")]
         //[RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
+        [StringLength(20)]
         [Display(Name = "Марка")]
+
         public string Brand { get; set; }
 
         [Required(ErrorMessage = "Обязательное поле.")]
         //[RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
-        [StringLength(50)]
+        [StringLength(20)]
         [Display(Name = "Модель")]
         public string Model { get; set; }
 
@@ -30,7 +32,7 @@ namespace autopark.Models
 
         [Required(ErrorMessage = "Обязательное поле.")]
         [Display(Name = "ГРЗ")]
-        //[StringLength(9, MinimumLength = 6)]
+        [StringLength(10, MinimumLength = 6)]
         //[RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         public string CarNumber { get; set; }
         [Required(ErrorMessage = "Обязательное поле.")]

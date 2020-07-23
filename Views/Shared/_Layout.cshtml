@@ -7,6 +7,16 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/jquery-ui.css">
+    <style>
+        label.error, label.error {
+            color: red;
+            font-style: italic;
+        }
+
+        .modal-footer {
+            padding: .3rem;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -70,7 +80,10 @@
                     minlength: 6
                 },
                 InspDate: "required",
-                InspNote: "required"
+                InspNote: {
+                    required: true,
+                    maxlength: 500
+                }
             },
             messages: {
                 Brand: "Обязательное поле.",
@@ -82,7 +95,10 @@
                 ReleaseDate: "Обязательное поле.",
                 RegDate: "Обязательное поле.",
                 InspDate: "Обязательное поле.",
-                InspNote: "Обязательное поле."
+                InspNote: {
+                    required: "Обязательное поле.",
+                    maxlength: "Достигнут максимум в 500 знаков."
+                }
             }
         });
     </script>

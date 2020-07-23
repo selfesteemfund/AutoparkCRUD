@@ -17,7 +17,7 @@ namespace autopark.Models
         public int CarId { get; set; }
         [Required(ErrorMessage = "Обязательное поле")]
         [Display(Name = "Замечания")]
-        [StringLength(50)]
+        [StringLength(500)]
         //[RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         public string InspNote { get; set; }
         [Required(ErrorMessage = "Обязательное поле")]

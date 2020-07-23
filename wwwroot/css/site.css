@@ -69,11 +69,3 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
-label.error, label.error {
-    color: red;
-    font-style: italic;
-}
-
-.modal-footer {
-    padding: .3rem;
-}
