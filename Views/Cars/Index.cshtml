@@ -4,14 +4,25 @@
 }
 
 <h1>Список автомобилей</h1>
-
 <p>
-    <a asp-action="Create">Добавить</a> | <a asp-action="Report">Отчёт</a>
+    <a href="" data-toggle="modal" data-target="#exampleModalCentered">Добавить автомобиль</a> |
+    <a asp-action="Report">Отчёт</a>
 </p>
+<style>
+    .form-group {
+        margin-bottom: .1rem;
+    }
+    .table td, .table th {
+        padding: .15rem;
+    }
+</style>
 
-<table class="table table-hover">
-    <thead >
+<table class="table table-hover table-bordered align-content-center">
+    <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Model)
             </th>
@@ -28,8 +39,13 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model) {
+
+        @foreach (var item in Model)
+        {
             <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Model)
                 </td>
@@ -45,9 +61,57 @@
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
                     <a asp-action="Details" asp-route-id="@item.Id">Подробности</a> |
-                    <a id="IndexDelete" asp-action="IndexDelete" asp-route-id="@item.Id">Удалить</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+
+<div class="modal fade" id="exampleModalCentered" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Новый автомобиль</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="myform" id="myform" method="post" asp-controller="Cars" asp-action="Index">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label class="control-label">Марка</label>
+                        <input id="Brand" name="Brand" class="form-control" required/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Модель</label>
+                        <input id="Model" name="Model" class="form-control" required/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Дата выпуска (д/м/г)</label>
+                        <input placeholder="Дата вводится посредством календаря" id="ReleaseDate" name="ReleaseDate" class="datepicker form-control"  />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">ГРЗ автомобиля</label>
+                        <input id="CarNumber" name="CarNumber" class="form-control" required/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Дата учёта (д/м/г)</label>
+                        <input placeholder="Дата вводится посредством календаря" id="RegDate" name="RegDate" class="datepicker form-control"/>
+                    </div>
+                    <br />
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <input type="submit" value="Добавить" class="btn btn-primary" />
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

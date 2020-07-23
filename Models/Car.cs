@@ -12,25 +12,30 @@ namespace autopark.Models
     {
 
         public int Id { get; set; }
+        [Required(ErrorMessage = "Обязательное поле.")]
+        //[RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
+        [Display(Name = "Марка")]
+        public string Brand { get; set; }
 
-        [Required(ErrorMessage = "Обязательное поле, не более 50-ти символов")]
+        [Required(ErrorMessage = "Обязательное поле.")]
         //[RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         [StringLength(50)]
-        [Display(Name = "Модель автомобиля")]
+        [Display(Name = "Модель")]
         public string Model { get; set; }
 
-        [Required(ErrorMessage = "Обязательное поле")]
-        [DisplayFormat(DataFormatString = @"{0:yyyy\/dd\/MM}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Дата выпуска")]
+        [Required(ErrorMessage = "Обязательное поле.")]
+        [DisplayFormat(DataFormatString = @"{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Дата выпуска (д/м/г)")]
         public DateTime ReleaseDate { get; set; }
-        [Required(ErrorMessage = "Обязательное поле")]
-        [Display(Name = "ГРЗ автомобиля")]
-        [StringLength(9, MinimumLength = 6)]
+
+        [Required(ErrorMessage = "Обязательное поле.")]
+        [Display(Name = "ГРЗ")]
+        //[StringLength(9, MinimumLength = 6)]
         //[RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         public string CarNumber { get; set; }
-        [Required(ErrorMessage = "Обязательное поле")]
-        [Display(Name = "Дата постановки на учёт")]
-        [DisplayFormat(DataFormatString = @"{0:yyyy\/dd\/MM}", ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = "Обязательное поле.")]
+        [Display(Name = "Дата учёта (д/м/г)")]
+        [DisplayFormat(DataFormatString = @"{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         public DateTime RegDate { get; set; }
 
         public string InspCarId
@@ -40,8 +45,20 @@ namespace autopark.Models
                 return Id + " - " + CarNumber;
             }
         }
-
         public ICollection<Inspection> Inspections { get; set; }
+
     }
 
 }
+/*-
+ 
+<div class="form-group">
+<label class="control-label">CarId</label>
+<input id="CarId" name="CarId" value="@(ViewBag.CarId)" class="form-control" disabled />
+</div>
+
+                    
+min="01-01-1995" max="12-31-2020"
+
+    
+-*/

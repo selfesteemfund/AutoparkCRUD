@@ -1153,6 +1153,43 @@ $.validator.addMethod( "zipcodeUS", function( value, element ) {
 
 $.validator.addMethod( "ziprange", function( value, element ) {
 	return this.optional( element ) || /^90[2-5]\d\{2\}-\d{4}$/.test( value );
-}, "Your ZIP-code must be in the range 902xx-xxxx to 905xx-xxxx" );
+}, "Your ZIP-code must be in the range 902xx-xxxx to 905xx-xxxx");
+
+	$.validator.setDefaults({
+		submitHandler: function () {
+			alert("submitted!");
+		}
+	});
+
+	$().ready(function () {
+		// validate signup form on keyup and submit
+		$(".myform").validate({
+			rules: {
+				Brand: "required",
+				Model: "required",
+				ReleaseDate: "required",
+				RegDate: "required",
+				CarNumber: {
+					required: true,
+					minlength: 6
+				},
+				InspDate: "required",
+				InspNote: "required"
+			},
+			messages: {
+				Brand: "Обязательное поле.",
+				Model: "Обязательное поле.",
+				CarNumber: {
+					required: "Обязательное поле.",
+					minlength: "Длина ГРЗ минимум 6 знаков."
+				},
+				ReleaseDate: "Обязательное поле.",
+				RegDate: "Обязательное поле.",
+				InspDate: "Обязательное поле.",
+				InspNote: "Обязательное поле."
+			}
+		});
+	});
+
 return $;
 }));

@@ -19,27 +19,27 @@ namespace autopark.Data
         {
         new Car
             {
-            Model = "Рено Логан",ReleaseDate = DateTime.Parse("1998-03-11"),CarNumber = "е817нв",RegDate = DateTime.Parse("2019-10-10")
+             Brand = "Renault", Model = "Logan",ReleaseDate = DateTime.Parse("1998-03-11"),CarNumber = "е817нв",RegDate = DateTime.Parse("2019-10-10")
             },
         new Car
             {
-            Model = "Москвич-2141",ReleaseDate = DateTime.Parse("1997-02-10"),CarNumber = "а324кв",RegDate = DateTime.Parse("2018-05-05")
+            Brand = "Москвич", Model = "2141",ReleaseDate = DateTime.Parse("1997-02-10"),CarNumber = "а324кв",RegDate = DateTime.Parse("2018-05-05")
             },
         new Car
             {
-            Model = "ВАЗ-21099",ReleaseDate = DateTime.Parse("1993-05-05"),CarNumber = "р902ун",RegDate = DateTime.Parse("2019-10-10")
+            Brand = "ВАЗ", Model = "21099",ReleaseDate = DateTime.Parse("1993-05-05"),CarNumber = "р902ун",RegDate = DateTime.Parse("2019-10-10")
             },
         new Car
             {
-            Model = "ЛАДА Калина",ReleaseDate = DateTime.Parse("2005-10-02"),CarNumber = "о402кн",RegDate = DateTime.Parse("2019-10-10")
+            Brand = "ЛАДА", Model = "Калина",ReleaseDate = DateTime.Parse("2019-10-02"),CarNumber = "о402кн",RegDate = DateTime.Parse("2019-10-10")
             },
         new Car
             {
-            Model = "ЛАДА Гранта",ReleaseDate = DateTime.Parse("2012-03-11"),CarNumber = "л552пв",RegDate = DateTime.Parse("2019-10-10")
+            Brand = "Hyundai",Model = "Solaris",ReleaseDate = DateTime.Parse("2012-03-11"),CarNumber = "л552пв",RegDate = DateTime.Parse("2019-10-10")
             },
         new Car
             {
-            Model = "Дэу Матиз",ReleaseDate = DateTime.Parse("2000-03-11"),CarNumber = "м606тч",RegDate = DateTime.Parse("2019-10-10")
+            Brand = "DAEWOO", Model = "Matiz",ReleaseDate = DateTime.Parse("2019-03-11"),CarNumber = "м606тч",RegDate = DateTime.Parse("2019-10-10")
             }
         };
 
@@ -63,6 +63,10 @@ namespace autopark.Data
         new Inspection
             {
             CarId = 2,InspNote = "Замечания отсутствуют",InspDate = DateTime.Parse("2019-10-05")
+            },
+        new Inspection
+            {
+            CarId = 3,InspNote = "Замечания отсутствуют",InspDate = DateTime.Parse("2019-11-05")
             }
         };
         foreach (Inspection n in inspections)

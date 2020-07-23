@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using autopark.Data;
 using autopark.Models;
 
-
 namespace autopark.Controllers
 {
     public class CarsController : Controller
@@ -18,16 +17,8 @@ namespace autopark.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index()
         {
-            var cars = from с in _context.Cars
-                         select с;
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                cars = cars.Where(s => s.CarNumber.Contains(searchString));
-            }
-
             return View(await _context.Cars.ToListAsync());
         }
 
@@ -49,7 +40,7 @@ namespace autopark.Controllers
             {
                 return NotFound();
             }
-
+            ViewBag.CarId = id;
             return View(car);
         }
         public IActionResult Report()
@@ -76,7 +67,7 @@ namespace autopark.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Model,ReleaseDate,CarNumber,RegDate,CarPicture")] Car car)
+        public async Task<IActionResult> Create([Bind("Id,Model,ReleaseDate,CarNumber,RegDate")] Car car)
         {
             if (ModelState.IsValid)
             {
@@ -102,10 +93,10 @@ namespace autopark.Controllers
             }
             return View(car);
         }
-       
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Model,ReleaseDate,CarNumber,RegDate,CarPicture")] Car car)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Brand,Model,ReleaseDate,CarNumber,RegDate")] Car car)
         {
             if (id != car.Id)
             {
@@ -130,7 +121,7 @@ namespace autopark.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Cars", new { id });
             }
             return View(car);
         }
@@ -176,5 +167,48 @@ namespace autopark.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Details(int id,  Inspection inspection)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Inspections.Add(new Inspection()
+                {
+                    CarId = id,
+                    InspNote = inspection.InspNote,
+                    InspDate = inspection.InspDate
+                });
+
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction("Details", "Cars", new { id });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Index([Bind("Id,Brand,Model,ReleaseDate,CarNumber,RegDate")] Car car)
+        {
+
+            if (ModelState.IsValid)
+            {
+                _context.Add(new Car()
+                {
+                    Brand = car.Brand,
+                    Model = car.Model,
+                    ReleaseDate = car.ReleaseDate,
+                    CarNumber = car.CarNumber,
+                    RegDate = car.RegDate
+                }
+                );
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(car);
+        }
     }
 }
+
+

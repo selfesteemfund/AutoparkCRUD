@@ -9,6 +9,13 @@
 <p>
     <a asp-action="Create">Добавить техосмотр</a>
 </p>
+
+<style>
+    .table td, .table th {
+        padding: .25rem;
+    }
+</style>
+
 <table class="table table-hover">
     <thead >
         <tr>
@@ -48,7 +55,7 @@
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
                     <a asp-action="Details" asp-route-id="@item.Id">Подробности</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                    <a id="IndexDelete" asp-action="IndexDelete" asp-route-id="@item.Id">Удалить</a>
                 </td>
             </tr>
         }

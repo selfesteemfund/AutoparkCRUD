@@ -1,18 +1,30 @@
 ﻿@model autopark.Models.Car
 
 @{
-    ViewData["Title"] = "Подробности";
+    ViewData["Title"] = Model.CarNumber +" - "+ Model.Model + " - Подробности";
 }
-
-<h1>Подробности</h1>
-
+    <h4>Подробности об автомобиле </h4>
+    <h1>@Html.DisplayFor(model => model.CarNumber) - @Html.DisplayFor(model => model.Model)</h1>
 <div>
-    <h4>об автомобиле</h4>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a> | 
-    <a asp-action="Create" asp-controller="Inspections">Добавить техосмотр</a>
+    
+    <div>
+        <a asp-action="Index">Назад</a> |
+        <a href="" data-toggle="modal" data-target="#exampleModalCentered">Добавить техосмотр</a> |
+        <a asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a> |
+        <a asp-action="Delete" asp-route-id="@Model.Id" asp-controller="Cars">Удалить</a>
+
+    </div>
 
     <hr />
+
+
     <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Brand)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Brand)
+        </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Model)
         </dt>
@@ -20,25 +32,33 @@
             @Html.DisplayFor(model => model.Model)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ReleaseDate)
+            Дата выпуска
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ReleaseDate)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CarNumber)
+            ГРЗ автомобиля
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.CarNumber)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.RegDate)
+            Дата учёта
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.RegDate)
         </dd>
     </dl>
-    <table class="table">
+    <hr />
+    <style>
+        .table td, .table th {
+            padding: .25rem;
+        }
+    </style>
+
+    <h4>Список техосмотров</h4>
+    <table class="table table-hover table-bordered">
         <thead>
             <tr>
                 <th>
@@ -51,7 +71,7 @@
                     Замечания
                 </th>
                 <th>
-                    Дата
+                    Дата техосмотра
                 </th>
                 <th></th>
             </tr>
@@ -61,41 +81,79 @@
             {
                 foreach (var item in Model.Inspections)
                 {
-            <tr>
+                    <tr>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Car.CarNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.InspNote)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.InspDate)
-                </td>
-                <td>
-                    <a asp-controller="Inspections" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
-                    <a asp-controller="Inspections" asp-action="Details" asp-route-id="@item.Id">Подробности</a> |
-                    <a asp-controller="Inspections" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
-                </td>
-            </tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Car.CarNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.InspNote)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.InspDate)
+                        </td>
+                        <td>
+                            <a asp-controller="Inspections" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                            <a asp-controller="Inspections" asp-action="Details" asp-route-id="@item.Id">Подробности</a> |
+                            <a asp-controller="Inspections" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                        </td>
+                    </tr>
                 }
             }
             else
             {
-            <tr>
-            <td colspan="5">
-                Записи о техосмотрах отсутствуют<br />
-                <a asp-action="Create" asp-controller="Inspections">Добавить техосмотр</a>
-            </td>
-            </tr>
+                <tr>
+                    <td colspan="5">
+                        Записи о техосмотрах отсутствуют<br />
+                        <a href="" data-toggle="modal" data-target="#exampleModalCentered">Добавить техосмотр</a>
+                    </td>
+                </tr>
             }
         <tbody>
     </table>
 </div>
 
-<div>
-     <a asp-action="Index">Вернуться к списку</a>
+
+<div class="modal fade" id="exampleModalCentered" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Новый техосмотр для @Model.CarNumber</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <form class="myform" method="post" asp-controller="Cars" asp-action="Details">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label class="control-label">Замечания</label>
+                        <textarea style="resize: vertical;max-height: 200px;" placeholder="Замечания об автомобиле" 
+                                  id="InspNote" 
+                                  name="InspNote" 
+                                  class="form-control rounded-0" 
+                                  id="exampleFormControlTextarea1" rows="10"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Дата техосмотра</label>
+                        <input placeholder="Дата вводится посредством календаря" id="InspDate" name="InspDate" class="datepicker form-control"/>
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <input type="submit" value="Добавить" class="btn btn-primary" />
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

@@ -21,8 +21,8 @@ namespace autopark.Models
         //[RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         public string InspNote { get; set; }
         [Required(ErrorMessage = "Обязательное поле")]
-        [Display(Name = "Дата техосмотра")]
-        [DisplayFormat(DataFormatString = @"{0:yyyy\/dd\/MM}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Дата техосмотра (д/м/г)")]
+        [DisplayFormat(DataFormatString = @"{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         public DateTime InspDate { get; set; }
         public Car Car { get; set; }
         

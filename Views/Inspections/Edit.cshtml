@@ -14,18 +14,27 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="CarId" class="control-label"></label>
+                <label class="control-label">Изменить автомобиль</label>
                 <select asp-for="CarId" class="form-control" asp-items="ViewBag.CarId"></select>
                 <span asp-validation-for="CarId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="InspNote" class="control-label"></label>
-                <input asp-for="InspNote" class="form-control" />
+                <textarea style="resize: vertical;max-height: 200px;" placeholder="Замечания об автомобиле"
+                          asp-for="InspNote"
+                          id="InspNote"
+                          name="InspNote"
+                          class="form-control rounded-0"
+                          id="exampleFormControlTextarea1" rows="10"></textarea>
                 <span asp-validation-for="InspNote" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="InspDate" class="control-label"></label>
-                <input asp-for="InspDate" type="date" class="datepicker form-control"  min="01-01-1995" max="12-31-2020" />
+                <label class="control-label">Дата техосмотра</label>
+                <input placeholder="Дата вводится посредством календаря"
+                       id="InspDate"
+                       name="InspDate"
+                       asp-for="InspDate"
+                       class="datepicker form-control" />
                 <span asp-validation-for="InspDate" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -36,7 +45,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Вернуться к списку</a>
+    <a asp-route-id="@Model.Id" asp-action="Details">Назад</a>
 </div>
 
 @section Scripts {

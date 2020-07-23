@@ -63,7 +63,7 @@ namespace autopark.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CarId"] = new SelectList(_context.Cars, "Id", "CarNumber", inspection.CarId);
+            ViewData["CarId"] = new SelectList(_context.Cars, "Id", "InspCarId");
             return View(inspection);
         }
 
@@ -80,7 +80,7 @@ namespace autopark.Controllers
             {
                 return NotFound();
             }
-            ViewData["CarId"] = new SelectList(_context.Cars, "Id", "CarNumber", inspection.CarId);
+            ViewData["CarId"] = new SelectList(_context.Cars, "Id", "InspCarId");
             return View(inspection);
         }
 
@@ -147,12 +147,22 @@ namespace autopark.Controllers
             var inspection = await _context.Inspections.FindAsync(id);
             _context.Inspections.Remove(inspection);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details", "Cars", new { id = inspection.CarId });
         }
 
         private bool InspectionExists(int id)
         {
             return _context.Inspections.Any(e => e.Id == id);
         }
+
+        public async Task<IActionResult> IndexDelete(int? id)
+        {
+            var inspection = await _context.Inspections.FindAsync(id);
+            _context.Inspections.Remove(inspection);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
     }
+
 }

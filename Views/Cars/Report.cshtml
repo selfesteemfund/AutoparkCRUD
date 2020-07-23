@@ -1,14 +1,13 @@
 ﻿@model autopark.Models.Car
 
 @{
-    ViewData["Title"] = "Отчёт";
+    ViewData["Title"] = "Отчёт об автомобилях";
 }
 
 <h1>Отчёт</h1>
 
 <div>
     <h4>об автомобилях</h4>
-
     <table class="table w-auto">
         <tr>
             <td>Всего автомобилей: </td>
@@ -16,12 +15,12 @@
             <td></td>
         </tr>
         <tr>
-            <td>Автомобили, выпущенные до трёх лет назад:</td>
+            <td>Старше трёх лет:</td>
             <td class="text-left">@ViewBag.LessThanThree</td>
             <td></td>
         </tr>
         <tr>    
-            <td>Автомобили, выпущенные более трёх лет назад:</td>
+            <td>Новее трёх лет:</td>
             <td class="text-left">@ViewBag.OlderThanThree</td>
             <td></td>
         </tr>
