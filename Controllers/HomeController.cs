@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using autopark.Models;
+using SmartBreadcrumbs.Attributes;
 
 namespace autopark.Controllers
 {

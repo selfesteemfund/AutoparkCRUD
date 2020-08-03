@@ -6,7 +6,7 @@
 <h1>Список автомобилей</h1>
 <p>
     <a href="" data-toggle="modal" data-target="#exampleModalCentered">Добавить автомобиль</a> |
-    <a asp-action="Report">Отчёт</a>
+    <a asp-controller="Cars" asp-action="Report">Отчёт</a>
 </p>
 <style>
     .form-group {
@@ -17,7 +17,7 @@
     }
 </style>
 
-<table class="table table-hover table-bordered align-content-center">
+<table class="mytable table table-hover table-bordered align-content-center">
     <thead>
         <tr>
             <th>
@@ -70,7 +70,7 @@
 
 
 <div class="modal fade" id="exampleModalCentered" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Новый автомобиль</h5>
@@ -79,27 +79,27 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="myform" id="myform" method="post" asp-controller="Cars" asp-action="Index">
+                <form class="myform" id="myform" method="post" enctype="multipart/form-data" asp-controller="Cars" asp-action="Index">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
                         <label class="control-label">Марка</label>
-                        <input id="Brand" name="Brand" class="form-control" required/>
+                        <input id="Brand" name="Brand" class="form-control" required />
                     </div>
                     <div class="form-group">
                         <label class="control-label">Модель</label>
-                        <input id="Model" name="Model" class="form-control" required/>
+                        <input id="Model" name="Model" class="form-control" required />
                     </div>
                     <div class="form-group">
-                        <label class="control-label">Дата выпуска (д/м/г)</label>
-                        <input placeholder="Дата вводится посредством календаря" id="ReleaseDate" name="ReleaseDate" class="datepicker form-control"  />
+                        <label class="control-label">Дата выпуска</label>
+                        <input placeholder="Вводится посредством календаря" id="ReleaseDate" name="ReleaseDate" class="datepicker form-control" />
                     </div>
                     <div class="form-group">
                         <label class="control-label">ГРЗ автомобиля</label>
-                        <input id="CarNumber" name="CarNumber" class="form-control" required/>
+                        <input id="CarNumber" name="CarNumber" class="form-control" required />
                     </div>
                     <div class="form-group">
-                        <label class="control-label">Дата учёта (д/м/г)</label>
-                        <input placeholder="Дата вводится посредством календаря" id="RegDate" name="RegDate" class="datepicker form-control"/>
+                        <label class="control-label">Дата учёта</label>
+                        <input placeholder="Вводится посредством календаря" id="RegDate" name="RegDate" class="datepicker form-control" />
                     </div>
                     <br />
                     <div class="modal-footer">

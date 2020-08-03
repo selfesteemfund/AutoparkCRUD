@@ -27,7 +27,7 @@ namespace autopark.Models
 
         [Required(ErrorMessage = "Обязательное поле.")]
         [DisplayFormat(DataFormatString = @"{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Дата выпуска (д/м/г)")]
+        [Display(Name = "Дата выпуска")]
         public DateTime ReleaseDate { get; set; }
 
         [Required(ErrorMessage = "Обязательное поле.")]
@@ -36,7 +36,7 @@ namespace autopark.Models
         //[RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         public string CarNumber { get; set; }
         [Required(ErrorMessage = "Обязательное поле.")]
-        [Display(Name = "Дата учёта (д/м/г)")]
+        [Display(Name = "Дата учёта")]
         [DisplayFormat(DataFormatString = @"{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         public DateTime RegDate { get; set; }
 

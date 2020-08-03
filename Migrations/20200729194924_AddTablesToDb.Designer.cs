@@ -10,8 +10,8 @@ using autopark.Data;
 namespace autopark.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200723132942_Everything")]
-    partial class Everything
+    [Migration("20200729194924_AddTablesToDb")]
+    partial class AddTablesToDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,16 +30,21 @@ namespace autopark.Migrations
 
                     b.Property<string>("Brand")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
 
                     b.Property<string>("CarNumber")
                         .IsRequired()
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
+
+                    b.Property<string>("CarPicture")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Model")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
 
                     b.Property<DateTime>("RegDate")
                         .HasColumnType("datetime2");
@@ -67,8 +72,8 @@ namespace autopark.Migrations
 
                     b.Property<string>("InspNote")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
 
                     b.HasKey("Id");
 

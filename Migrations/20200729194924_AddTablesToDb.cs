@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace autopark.Migrations
 {
-    public partial class Everything : Migration
+    public partial class AddTablesToDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,11 +13,12 @@ namespace autopark.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Brand = table.Column<string>(nullable: false),
-                    Model = table.Column<string>(maxLength: 50, nullable: false),
+                    Brand = table.Column<string>(maxLength: 20, nullable: false),
+                    Model = table.Column<string>(maxLength: 20, nullable: false),
                     ReleaseDate = table.Column<DateTime>(nullable: false),
-                    CarNumber = table.Column<string>(nullable: false),
-                    RegDate = table.Column<DateTime>(nullable: false)
+                    CarNumber = table.Column<string>(maxLength: 10, nullable: false),
+                    RegDate = table.Column<DateTime>(nullable: false),
+                    CarPicture = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -31,7 +32,7 @@ namespace autopark.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CarId = table.Column<int>(nullable: false),
-                    InspNote = table.Column<string>(maxLength: 50, nullable: false),
+                    InspNote = table.Column<string>(maxLength: 500, nullable: false),
                     InspDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
