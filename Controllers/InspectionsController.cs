@@ -114,9 +114,9 @@ namespace autopark.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+
             }
-            ViewData["CarId"] = new SelectList(_context.Cars, "Id", "CarNumber", inspection.CarId);
+            ViewData["CarId"] = new SelectList(_context.Cars, "Id", "InspCarId");
             return View(inspection);
         }
 
@@ -161,6 +161,27 @@ namespace autopark.Controllers
             _context.Inspections.Remove(inspection);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateInspectionFromCar(int id, Inspection inspection)
+        {
+
+                if (ModelState.IsValid)
+                {
+                    _context.Inspections.Add(new Inspection()
+                    {
+                        CarId = id,
+                        InspNote = inspection.InspNote,
+                        InspDate = inspection.InspDate
+                    });
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Details", "Cars", new { id });
+                }
+
+            return View(inspection);
+
         }
 
     }

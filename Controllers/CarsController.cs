@@ -165,42 +165,15 @@ namespace autopark.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Details(int id,  Inspection inspection)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Inspections.Add(new Inspection()
-                {
-                    CarId = id,
-                    InspNote = inspection.InspNote,
-                    InspDate = inspection.InspDate
-                });
-
-                await _context.SaveChangesAsync();
-            }
-            return RedirectToAction("Details", "Cars", new { id });
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index([Bind("Id,Brand,Model,ReleaseDate,CarNumber,RegDate")] Car car)
+        public async Task<IActionResult> CreateCar([Bind("Id,Brand,Model,ReleaseDate,CarNumber,RegDate")] Car car)
         {
 
             if (ModelState.IsValid)
             {
-                _context.Add(new Car()
-                {
-                    Brand = car.Brand,
-                    Model = car.Model,
-                    ReleaseDate = car.ReleaseDate,
-                    CarNumber = car.CarNumber,
-                    RegDate = car.RegDate
-                }
-                );
+                _context.Add(car);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Cars", new { id = car.Id });
             }
-
             return View(car);
         }
     }

@@ -25,7 +25,8 @@
                           id="InspNote"
                           name="InspNote"
                           class="form-control rounded-0"
-                          id="exampleFormControlTextarea1" rows="10"></textarea>
+                          rows="10">
+                </textarea>
                 <span asp-validation-for="InspNote" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -45,7 +46,9 @@
 </div>
 
 <div>
-    <a asp-route-id="@Model.Id" asp-action="Details">Назад</a>
+    Перейти к:
+    <a asp-action="Details" asp-controller="Cars" asp-route-id="@Model.CarId">автомобилю</a> |
+    <a asp-action="Details" asp-controller="Inspections" asp-route-id="@Model.Id">техосмотру</a>
 </div>
 
 @section Scripts {
