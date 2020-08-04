@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using autopark.Data;
 using autopark.Models;
-using SmartBreadcrumbs.Attributes;
 
 namespace autopark.Controllers
 {
@@ -22,8 +21,6 @@ namespace autopark.Controllers
         {
             return View(await _context.Cars.ToListAsync());
         }
-
-
 
         public async Task<IActionResult> Details(int? id)
         {

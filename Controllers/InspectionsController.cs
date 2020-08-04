@@ -17,14 +17,12 @@ namespace autopark.Controllers
             _context = context;
         }
 
-        // GET: Inspections
         public async Task<IActionResult> Index()
         {
             var appDbContext = _context.Inspections.Include(c => c.Car);
             return View(await appDbContext.ToListAsync());
         }
 
-        // GET: Inspections/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,16 +41,12 @@ namespace autopark.Controllers
             return View(inspection);
         }
 
-        // GET: Inspections/Create
         public IActionResult Create()
         {
             ViewBag.InspCarId = new SelectList(_context.Cars, "Id", "InspCarId");
             return View();
         }
 
-        // POST: Inspections/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,CarId,InspNote,InspDate")] Inspection inspection)
@@ -67,7 +61,6 @@ namespace autopark.Controllers
             return View(inspection);
         }
 
-        // GET: Inspections/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -84,9 +77,6 @@ namespace autopark.Controllers
             return View(inspection);
         }
 
-        // POST: Inspections/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,CarId,InspNote,InspDate")] Inspection inspection)
@@ -120,7 +110,6 @@ namespace autopark.Controllers
             return View(inspection);
         }
 
-        // GET: Inspections/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
