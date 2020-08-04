@@ -50,9 +50,23 @@
         </dl>
         <hr />
         <style>
-            .table td, .table th {
-                padding: .25rem;
+            .text {
+                display: block;
+                display: -webkit-box;
+                max-width: 400px;
+                height: 50px;
+                margin: 0 auto;
+                line-height: 1.2;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
+            .table td, .table th {
+                white-space: nowrap;
+                overflow: hidden;
+                padding: .25rem;
+                }
         </style>
 
         <h4>Список техосмотров</h4>
@@ -88,7 +102,7 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Car.CarNumber)
                             </td>
-                            <td>
+                            <td class="text">
                                 @Html.DisplayFor(modelItem => item.InspNote)
                             </td>
                             <td>
